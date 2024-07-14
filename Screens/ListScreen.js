@@ -60,7 +60,7 @@ const MovieScreen = () => {
       <Text style={styles.header}>{type === 'movie' ? 'Filmler' : 'Diziler'}</Text>
       <TextInput
         style={styles.searchInput}
-        placeholder="Ara..."
+        placeholder="Film / Dizi / Oyuncu ara"
         value={searchQuery}
         onChangeText={handleSearch}
       />
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     height: 40,
+    margin:15,
     borderColor: '#ccc',
     borderWidth: 1,
     marginBottom: 10,

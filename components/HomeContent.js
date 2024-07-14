@@ -20,7 +20,7 @@ const HomeContent = ({ navigation }) => {
           <Text style={styles.title}>{item.title}</Text> 
         </TouchableOpacity>
       ))}
-      <BottomBar/>
+      <BottomBar navigation={navigation} />
     </View>
   );
 };
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
     paddingLeft:15
   },
   card: {
-    marginBottom: 10,
+
  
     alignItems: 'center',
     justifyContent: 'center',
   },
   image: {
     width: "75%",
-    height: 220,
+    height: 215,
     borderRadius: 10,
     
   },
