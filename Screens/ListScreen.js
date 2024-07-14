@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 import { useRoute } from '@react-navigation/native';
 import data from "../data/data.json";
 import Header from '../components/Header';
@@ -11,7 +11,8 @@ const MovieScreen = () => {
   const { type } = route.params; // Get type from route params
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('');
+  const [sortOption, setSortOption] = useState('newest'); // Default sorting option
+  const [open, setOpen] = useState(false); // State to control dropdown open/close
 
   const handleSearch = (text) => {
     setSearchQuery(text);
@@ -19,19 +20,22 @@ const MovieScreen = () => {
 
   const handleSort = (option) => {
     setSortOption(option);
+    setOpen(false); // Close dropdown after selecting an option
   };
 
   const filterData = (entries) => {
     let filteredEntries = entries;
 
+    // Filter by type if type is defined
     if (type) {
       filteredEntries = filteredEntries.filter(item => item.programType === type);
     }
 
+    // Filter by search query if length >= 3
     if (searchQuery.length >= 3) {
       filteredEntries = filteredEntries.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
     } else {
-      filteredEntries = filteredEntries.slice(0, 18);
+      filteredEntries = filteredEntries.slice(0, 18); // Show first 18 entries if no search query
     }
 
     return filteredEntries;
@@ -54,6 +58,13 @@ const MovieScreen = () => {
 
   const filteredData = sortData(filterData(data.entries));
 
+  // Options for DropDownPicker
+  const dropDownItems = [
+    { label: 'Yeniye Göre Sırala', value: 'newest' },
+    { label: 'Eskiye Göre Sırala', value: 'oldest' },
+    { label: 'Rastgele Sırala', value: 'random' },
+  ];
+
   return (
     <ScrollView>
       <Header />
@@ -64,15 +75,17 @@ const MovieScreen = () => {
         value={searchQuery}
         onChangeText={handleSearch}
       />
-      <Picker
-        selectedValue={sortOption}
+      <DropDownPicker
+        open={open}
+        value={sortOption}
+        items={dropDownItems}
+        setOpen={setOpen}
+        setValue={handleSort}
+        placeholder="Sırala"
+        containerStyle={styles.pickerContainer}
         style={styles.picker}
-        onValueChange={(itemValue) => handleSort(itemValue)}
-      >
-        <Picker.Item label="Yeniye Göre Sırala" value="newest" />
-        <Picker.Item label="Eskiye Göre Sırala" value="oldest" />
-        <Picker.Item label="Rastgele Sırala" value="random" />
-      </Picker>
+        dropDownStyle={styles.dropDownPicker}
+      />
       <View style={styles.container}>
         {filteredData.map((item, index) => (
           <View key={index} style={styles.card}>
@@ -106,16 +119,27 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     height: 40,
-    margin:15,
+    margin: 15,
     borderColor: '#ccc',
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius: 8,
   },
-  picker: {
+  pickerContainer: {
     height: 40,
     marginBottom: 10,
+  },
+  picker: {
+    backgroundColor: '#f0f0f0',
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 8,
+  },
+  dropDownPicker: {
+    backgroundColor: '#f0f0f0',
+    borderColor: '#ccc',
+    borderRadius: 8,
   },
   card: {
     marginBottom: 20,

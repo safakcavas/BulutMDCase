@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import BottomBar from './BottomBar';
 const items = [
   { title: 'Film', image: require('../assets/film.jpg'),type:'series'},
@@ -8,7 +8,7 @@ const items = [
 
 const HomeContent = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.header}>Popüler Başlıklar</Text>
       {items.map((item, index) => (
         <TouchableOpacity
@@ -20,14 +20,14 @@ const HomeContent = ({ navigation }) => {
           <Text style={styles.title}>{item.title}</Text> 
         </TouchableOpacity>
       ))}
-      <BottomBar navigation={navigation} />
-    </View>
+
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-
+flex:1
   },
   header: {
     backgroundColor: '#484848',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "75%",
-    height: 215,
+    height: 200,
     borderRadius: 10,
     
   },

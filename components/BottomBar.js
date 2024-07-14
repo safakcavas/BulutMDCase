@@ -33,8 +33,9 @@ const BottomBar = () => {
 
 const styles = StyleSheet.create({
     bottomBarContainer: {
+        
         backgroundColor: '#333',
-        paddingBottom: 10, // Add padding to separate icons from text links
+         // Add padding to separate icons from text links
     },
     bottomBar: {
         flexDirection: 'row',
