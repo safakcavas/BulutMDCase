@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, Text, Image, StyleSheet, ScrollView, TextInput, SafeAreaView } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { useRoute } from '@react-navigation/native';
 import data from "../data/data.json";
@@ -66,6 +66,8 @@ const MovieScreen = () => {
   ];
 
   return (
+    <SafeAreaView>
+
     <ScrollView>
       <Header />
       <Text style={styles.header}>{type === 'movie' ? 'Filmler' : 'Diziler'}</Text>
@@ -74,7 +76,7 @@ const MovieScreen = () => {
         placeholder="Film / Dizi / Oyuncu ara"
         value={searchQuery}
         onChangeText={handleSearch}
-      />
+        />
       <DropDownPicker
         open={open}
         value={sortOption}
@@ -85,7 +87,7 @@ const MovieScreen = () => {
         containerStyle={styles.pickerContainer}
         style={styles.picker}
         dropDownStyle={styles.dropDownPicker}
-      />
+        />
       <View style={styles.container}>
         {filteredData.map((item, index) => (
           <View key={index} style={styles.card}>
@@ -96,6 +98,7 @@ const MovieScreen = () => {
       </View>
       <BottomBar />
     </ScrollView>
+        </SafeAreaView>
   );
 };
 
