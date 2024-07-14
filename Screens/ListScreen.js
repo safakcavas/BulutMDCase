@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     height: 40,
     color: 'white',
     padding: 8,
-    paddingLeft: 15
+    paddingLeft: 11
   },
   searchInput: {
     height: 40,
