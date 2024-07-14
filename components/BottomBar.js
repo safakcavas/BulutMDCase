@@ -21,6 +21,7 @@ const BottomBar = () => {
 
 const styles = StyleSheet.create({
     bottomBar: {
+        top:20,
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 10,

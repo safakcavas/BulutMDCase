@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import BottomBar from './BottomBar';
 const items = [
-  { title: 'Film', image: require('../assets/film.jpg')},
-  { title: 'Dizi', image: require('../assets/dizi.jpg')},
+  { title: 'Film', image: require('../assets/film.jpg'),type:'series'},
+  { title: 'Dizi', image: require('../assets/dizi.jpg'),type:'movie'},
 ];
 
 const HomeContent = ({ navigation }) => {
@@ -14,7 +14,7 @@ const HomeContent = ({ navigation }) => {
         <TouchableOpacity
           key={index}
           style={styles.card}
-          onPress={() => navigation.navigate('List')}
+          onPress={() => navigation.navigate("Film", { type: item.type })}
         >
           <Image  resizeMode='stretch' source={item.image} style={styles.image} />
           <Text style={styles.title}>{item.title}</Text> 
