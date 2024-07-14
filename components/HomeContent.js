@@ -14,7 +14,7 @@ const HomeContent = ({ navigation }) => {
         <TouchableOpacity
           key={index}
           style={styles.card}
-          onPress={() => navigation.navigate("Film", { type: item.type })}
+          onPress={() => navigation.navigate("Film", { type: item.type })} // type kullanarak  seçilen içeriğe göre tip gönderiyor ve kod tekrarına düşmeden aynı sayfada hem filmler hem diziler render oluyor
         >
           <Image  resizeMode='stretch' source={item.image} style={styles.image} />
           <Text style={styles.title}>{item.title}</Text> 

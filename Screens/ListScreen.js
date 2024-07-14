@@ -20,27 +20,28 @@ const MovieScreen = () => {
 
   const handleSort = (option) => {
     setSortOption(option);
-    setOpen(false); // Close dropdown after selecting an option
+    setOpen(false); // dropdown ile seçim yapıldıktan sonra dropdwon kapatılıyor
   };
 
   const filterData = (entries) => {
     let filteredEntries = entries;
 
-    // Filter by type if type is defined
+  // film yada dizi tipine göre filtreleme yapılıyor
     if (type) {
       filteredEntries = filteredEntries.filter(item => item.programType === type);
     }
 
-    // Filter by search query if length >= 3
+    // Arama sorgusu 3 karakterden büyükse filtreleme yapılıyor
     if (searchQuery.length >= 3) {
       filteredEntries = filteredEntries.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
     } else {
-      filteredEntries = filteredEntries.slice(0, 18); // Show first 18 entries if no search query
+      filteredEntries = filteredEntries.slice(0, 18); // ilk 18 veri gösteriliyor
     }
 
     return filteredEntries;
   };
 
+    // Sıralama islemi
   const sortData = (entries) => {
     switch (sortOption) {
       case 'title':
@@ -58,7 +59,7 @@ const MovieScreen = () => {
 
   const filteredData = sortData(filterData(data.entries));
 
-  // Options for DropDownPicker
+  // dropdown içerisindeki seçenekler
   const dropDownItems = [
     { label: 'Yeniye Göre Sırala', value: 'newest' },
     { label: 'Eskiye Göre Sırala', value: 'oldest' },
