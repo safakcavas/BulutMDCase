@@ -1,0 +1,60 @@
+import React from 'react';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import BottomBar from './BottomBar';
+const items = [
+  { title: 'Film', image: require('../assets/film.jpg')},
+  { title: 'Dizi', image: require('../assets/dizi.jpg')},
+];
+
+const HomeContent = ({ navigation }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header}>Popüler Başlıklar</Text>
+      {items.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.card}
+          onPress={() => navigation.navigate('List')}
+        >
+          <Image  resizeMode='stretch' source={item.image} style={styles.image} />
+          <Text style={styles.title}>{item.title}</Text> 
+        </TouchableOpacity>
+      ))}
+      <BottomBar/>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+
+  },
+  header: {
+    backgroundColor: '#484848',
+    fontSize: 18,
+    marginBottom: 10,
+    width: "fit-content",
+    height:40,
+    color: 'white',
+    padding:8,
+    paddingLeft:15
+  },
+  card: {
+    marginBottom: 10,
+ 
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: "75%",
+    height: 220,
+    borderRadius: 10,
+    
+  },
+  title: {
+    textAlign: 'center',
+    marginTop: 5,
+  },
+});
+
+export default HomeContent;
