@@ -52,12 +52,15 @@ const styles = StyleSheet.create({
     },
     iconsContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
+
         paddingTop: 10, // Adjust padding as needed
     },
     icon: {
         width: 40,
         height: 40,
+        marginLeft:10,
+        marginRight:10
     },
 });
 
