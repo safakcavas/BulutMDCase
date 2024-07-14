@@ -8,11 +8,11 @@ import BottomBar from '../components/BottomBar';
 
 const MovieScreen = () => {
   const route = useRoute();
-  const { type } = route.params; // Get type from route params
+  const { type } = route.params; // route params'dan type'ı al
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('newest'); // Default sorting option
-  const [open, setOpen] = useState(false); // State to control dropdown open/close
+  const [sortOption, setSortOption] = useState('newest'); // Varsayılan sıralama seçeneği
+  const [open, setOpen] = useState(false); // Dropdown açma/kapama durumu
 
   const handleSearch = (text) => {
     setSearchQuery(text);
@@ -20,13 +20,13 @@ const MovieScreen = () => {
 
   const handleSort = (option) => {
     setSortOption(option);
-    setOpen(false); // dropdown ile seçim yapıldıktan sonra dropdwon kapatılıyor
+    setOpen(false); // Dropdown ile seçim yapıldıktan sonra dropdown kapatılıyor
   };
 
   const filterData = (entries) => {
     let filteredEntries = entries;
 
-  // film yada dizi tipine göre filtreleme yapılıyor
+    // Film ya da dizi tipine göre filtreleme yapılıyor
     if (type) {
       filteredEntries = filteredEntries.filter(item => item.programType === type);
     }
@@ -35,13 +35,13 @@ const MovieScreen = () => {
     if (searchQuery.length >= 3) {
       filteredEntries = filteredEntries.filter(item => item.title.toLowerCase().includes(searchQuery.toLowerCase()));
     } else {
-      filteredEntries = filteredEntries.slice(0, 18); // ilk 18 veri gösteriliyor
+      filteredEntries = filteredEntries.slice(0, 18); // İlk 18 veri gösteriliyor
     }
 
     return filteredEntries;
   };
 
-    // Sıralama islemi
+  // Sıralama işlemi
   const sortData = (entries) => {
     switch (sortOption) {
       case 'title':
@@ -59,7 +59,7 @@ const MovieScreen = () => {
 
   const filteredData = sortData(filterData(data.entries));
 
-  // dropdown içerisindeki seçenekler
+  // Dropdown içerisindeki seçenekler
   const dropDownItems = [
     { label: 'Yeniye Göre Sırala', value: 'newest' },
     { label: 'Eskiye Göre Sırala', value: 'oldest' },
@@ -68,38 +68,38 @@ const MovieScreen = () => {
 
   return (
     <SafeAreaView>
-
-    <ScrollView>
-      <Header />
-      <Text style={styles.header}>{type === 'movie' ? 'Filmler' : 'Diziler'}</Text>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Film / Dizi / Oyuncu ara"
-        value={searchQuery}
-        onChangeText={handleSearch}
+      <ScrollView>
+        <Header />
+        <Text style={styles.header}>{type === 'movie' ? 'Filmler' : 'Diziler'}</Text>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Film / Dizi / Oyuncu ara"
+          value={searchQuery}
+          onChangeText={handleSearch}
         />
-      <DropDownPicker
-        open={open}
-        value={sortOption}
-        items={dropDownItems}
-        setOpen={setOpen}
-        setValue={handleSort}
-        placeholder="Sırala"
-        containerStyle={styles.pickerContainer}
-        style={styles.picker}
-        dropDownStyle={styles.dropDownPicker}
+        <DropDownPicker
+          open={open}
+          value={sortOption}
+          items={dropDownItems}
+          setOpen={setOpen}
+          setValue={handleSort}
+          placeholder="Sırala"
+          containerStyle={styles.pickerContainer}
+          style={styles.picker}
+          dropDownContainerStyle={styles.dropDownPicker}
+          listItemContainerStyle={styles.dropDownPickerItem} // Dropdown item'larına stil ekleme
         />
-      <View style={styles.container}>
-        {filteredData.map((item, index) => (
-          <View key={index} style={styles.card}>
-            <Image source={{ uri: item.images["Poster Art"].url }} style={styles.image} />
-            <Text style={styles.title}>{item.title}</Text>
-          </View>
-        ))}
-      </View>
-      <BottomBar />
-    </ScrollView>
-        </SafeAreaView>
+        <View style={styles.container}>
+          {filteredData.map((item, index) => (
+            <View key={index} style={styles.card}>
+              <Image source={{ uri: item.images["Poster Art"].url }} style={styles.image} />
+              <Text style={styles.title}>{item.title}</Text>
+            </View>
+          ))}
+        </View>
+        <BottomBar />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-  
     backgroundColor: '#f0f0f0',
   },
   header: {
@@ -134,21 +133,23 @@ const styles = StyleSheet.create({
     height: 40,
     marginBottom: 15,
     paddingHorizontal: 15,
-  
   },
   picker: {
     backgroundColor: '#f0f0f0',
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
-   
-
- 
+    paddingHorizontal: 15,
   },
-
+  dropDownPicker: {
+    paddingHorizontal: 15,
+   left:15
+  },
+  dropDownPickerItem: {
+    paddingHorizontal: 10 
+  },
   card: {
-  
-marginLeft: 10,
+    marginLeft: 10,
     marginBottom: 20,
     backgroundColor: '#fff',
     borderRadius: 8,
