@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    padding: 10,
+  
     backgroundColor: '#f0f0f0',
   },
   header: {
@@ -132,20 +132,22 @@ const styles = StyleSheet.create({
   },
   pickerContainer: {
     height: 40,
-    marginBottom: 10,
+    marginBottom: 15,
+  
   },
   picker: {
     backgroundColor: '#f0f0f0',
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
+    width:360,
+   marginLeft:16,
+ 
   },
-  dropDownPicker: {
-    backgroundColor: '#f0f0f0',
-    borderColor: '#ccc',
-    borderRadius: 8,
-  },
+
   card: {
+  
+marginLeft: 10,
     marginBottom: 20,
     backgroundColor: '#fff',
     borderRadius: 8,
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     shadowOffset: { width: 0, height: 2 },
     elevation: 3,
-    width: "50%"
+    width: "45%"
   },
   image: {
     width: 150,
