@@ -133,6 +133,7 @@ const styles = StyleSheet.create({
   pickerContainer: {
     height: 40,
     marginBottom: 15,
+    paddingHorizontal: 15,
   
   },
   picker: {
@@ -140,8 +141,8 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 8,
-    width:360,
-   marginLeft:16,
+   
+
  
   },
 

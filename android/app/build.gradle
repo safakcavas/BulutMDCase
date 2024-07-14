@@ -91,9 +91,9 @@ android {
         }
          release {
       storeFile file('my-relase-key.keystore')
-      storePassword '0000000'
+      storePassword '123456'
       keyAlias 'my-relase-key'
-      keyPassword '000000'
+      keyPassword '123456'
     }
     }
     buildTypes {
